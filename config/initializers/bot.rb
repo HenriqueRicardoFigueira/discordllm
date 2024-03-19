@@ -1,6 +1,6 @@
-require 'discordrb'
+# frozen_string_literal: true
 
-ChanelID = 1153312562579001346
+# chanel_id = 1153312562579001346
 
 Bot = Discordrb::Commands::CommandBot.new(
   token: Rails.application.credentials.discord[:token],

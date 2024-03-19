@@ -1,11 +1,11 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+# rubocop:disable Style/Documentation
+require_relative 'boot'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
+require 'rails/all'
 Bundler.require(*Rails.groups)
-
+# This is the main application class for the Discordllm application.
 module Discordllm
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -20,3 +20,4 @@ module Discordllm
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+# rubocop:enable Style/Documentation
