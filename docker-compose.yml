@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:14.8
+    container_name: "postgres"
+    command: ["postgres", "-c", "logging_collector=on", "-c", "log_filename=postgresql.log", "-c", "log_statement=all"]
+    environment:
+      PGDATA: /tmp
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  redis:
+    image: redis:7.0.8
+    command: redis-server --appendonly yes
+    ports:
+      - target: 6379
+        published: ${REDIS_PORT}
+        protocol: tcp
+        mode: host
+    volumes:
+        - redis_data:/data
+    restart: always
+    environment:
+      - REDIS_REPLICATION_MODE=master
+volumes:
+  pg_data:
+  redis_data:
