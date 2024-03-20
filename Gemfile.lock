@@ -85,6 +85,7 @@ GEM
       xpath (~> 3.2)
     colorize (1.1.0)
     concurrent-ruby (1.2.3)
+    connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.4)
     debug (1.8.0)
@@ -99,8 +100,18 @@ GEM
     discordrb-webhooks (3.5.0)
       rest-client (>= 2.0.0)
     domain_name (0.6.20240107)
+    dotenv (3.1.0)
     erubi (1.12.0)
+    ethon (0.16.0)
+      ffi (>= 1.15.0)
     event_emitter (0.2.6)
+    faraday (2.9.0)
+      faraday-net_http (>= 2.0, < 3.2)
+    faraday-net_http (3.1.0)
+      net-http
+    faraday-typhoeus (1.1.0)
+      faraday (~> 2.0)
+      typhoeus (~> 1.4)
     ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -156,6 +167,8 @@ GEM
     minitest (5.22.3)
     msgpack (1.7.2)
     multi_xml (0.6.0)
+    net-http (0.4.1)
+      uri
     net-imap (0.4.3)
       date
       net-protocol
@@ -169,12 +182,16 @@ GEM
     nio4r (2.7.0)
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
+    ollama-ai (1.2.0)
+      faraday (~> 2.9)
+      faraday-typhoeus (~> 1.1)
     opus-ruby (1.0.1)
       ffi
     parallel (1.24.0)
     parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
+    pg (1.5.6)
     pragmatic_segmenter (0.3.23)
       unicode
     psych (5.1.1.1)
@@ -218,6 +235,10 @@ GEM
     rake (13.1.0)
     rdoc (6.5.0)
       psych (>= 4.0.0)
+    redis (5.1.0)
+      redis-client (>= 0.17.0)
+    redis-client (0.21.0)
+      connection_pool
     regexp_parser (2.9.0)
     reline (0.3.9)
       io-console (~> 0.5)
@@ -246,6 +267,11 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sidekiq (7.2.2)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.19.0)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -265,10 +291,13 @@ GEM
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
+    typhoeus (1.4.1)
+      ethon (>= 0.9.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode (0.4.4.4)
     unicode-display_width (2.5.0)
+    uri (0.13.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -293,14 +322,19 @@ DEPENDENCIES
   capybara
   debug
   discordrb
+  dotenv
   httparty (~> 0.21.0)
   importmap-rails
   jbuilder
   langchainrb_rails (~> 0.1.8)
+  ollama-ai
+  pg (~> 1.5)
   puma (~> 5.0)
   rails (~> 7.0.8)
+  redis (~> 5.1)
   rubocop (~> 1.62, >= 1.62.1)
   selenium-webdriver
+  sidekiq (~> 7.1)
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
