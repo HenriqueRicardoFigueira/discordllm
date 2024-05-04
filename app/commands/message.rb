@@ -8,7 +8,16 @@ module Message
 
   Bot.command(:message) do |event|
     query = event.message.content[8..]
+    client = Ollama.new(
+      credentials: { address: ENV['OLLAMA_URL'] },
+      options: { server_sent_events: true }
+    )
 
-    event.respond OllamaRequestJob.perform_now(query)
+    response = client.generate(
+      { model: ENV['OLLAMA_MODEL'],
+        prompt: query,
+        stream: false }
+    )
+    event.respond response.first['response']
   end
 end
