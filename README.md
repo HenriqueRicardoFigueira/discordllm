@@ -1,24 +1,38 @@
-# README
+# Bot Discord com Modelo LLM Local Customizado
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este projeto consiste em um bot do Discord escrito em Ruby on Rails na versão 7. Ele utiliza um modelo de Large Language Model (LLM) local customizado, garantindo total confidencialidade e privacidade, pois não compartilha informações e roda completamente offline.
 
-Things you may want to cover:
+ ## Funcionalidades
 
-* Ruby version
+- Responde a comandos específicos do Discord.
+- Utiliza um modelo LLM local para gerar respostas.
+- Mantém total confidencialidade dos dados.
 
-* System dependencies
+## Instalação e Uso
 
-* Configuration
+1. Clone o repositório:
+```bash
+  git clone https://github.com/HenriqueRicardoFigueira/discordllm.git
+```
+2. Instale as dependências:
 
-* Database creation
+```bash
+  bundle install
+```
+3. Configure as variáveis de ambiente no arquivo .env:
+```bash
+OLLAMA_URL = 'url'
+OLLAMA_MODEL = 'nome do modelo'
+```
+4. Adicione as credenciais no ambiente:
+```bash
+ EDITOR='vi' rails credentails:edit --environment=ambiente
+```
+5. Execute o bot:
+```bash
+rails s
+```
 
-* Database initialization
+## Licença
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Este projeto está licenciado sob a Licença MIT.
